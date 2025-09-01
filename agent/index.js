@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const hoje = new Date().toISOString().split('T')[0];
 const hq = {
@@ -9,8 +10,6 @@ const hq = {
   fonte: "https://g1.globo.com/"
 };
 
-// Atualiza data.json
-fs.writeFileSync('data.json', JSON.stringify(hq, null, 2));
-
-// Salva HQ no histórico
-fs.writeFileSync(`hqs/${hoje}.json`, JSON.stringify(hq, null, 2));
+// Salva na pasta docs
+fs.writeFileSync(path.join(__dirname, '..', 'docs', 'data.json'), JSON.stringify(hq, null, 2));
+fs.writeFileSync(path.join(__dirname, '..', 'docs', 'hqs', `${hoje}.json`), JSON.stringify(hq, null, 2));
