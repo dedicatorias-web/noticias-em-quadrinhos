@@ -18,4 +18,4 @@ async function gerarImagem(roteiro, nomeArquivo) {
   });
 }
 
-module.exports = { gerarImagem };
+module.exports = { gerarImagem }; 
