@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Notícia em Quadrinhos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .hq-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hq-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .caption {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+    }
+    .source {
+      font-size: 12px;
+      margin-top: 30px;
+    }
+    .anteriores {
+      margin-top: 50px;
+      text-align: left;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .anteriores h2 {
+      color: #2c3e50;
+    }
+    .anteriores ul {
+      list-style: none;
+      padding: 0;
+    }
+    .anteriores li {
+      margin-bottom: 10px;
+    }
+    .anteriores a {
+      text-decoration: none;
+      color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>🗞️ HQ da Última Hora</h1>
+  <div class="hq-container">
+    <p id="descricao">Carregando...</p>
+    <img id="imagem" src="" alt="HQ da notícia">
+    <p class="caption" id="legenda">...</p>
+  </div>
+  <p class="source">Fonte: <a id="fonte" href="#" target="_blank">...</a></p>
+
+  <div class="anteriores">
+    <h2>🗂️ HQs anteriores</h2>
+    <ul id="lista-hqs">
+      <li><a href="hqs/2025-08-31.json">Venda de Gustavo Mancha (2025-08-31)</a></li>
+      <li><a href="hqs/2025-08-30.json">Crise no transporte público (2025-08-30)</a></li>
+      <!-- Você pode gerar essa lista dinamicamente depois -->
+    </ul>
+  </div>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        document.querySelector('h1').textContent = data.titulo;
+        document.getElementById('descricao').textContent = data.descricao;
+        document.getElementById('imagem').src = data.imagem;
+        document.getElementById('legenda').textContent = data.legenda;
+        document.getElementById('fonte').href = data.fonte;
+      });
+  </script>
+</body>
+</html>
