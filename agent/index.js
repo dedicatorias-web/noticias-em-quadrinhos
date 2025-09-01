@@ -1,18 +1,22 @@
-const { buscarNoticia } = require("./buscarNoticia");
-const { gerarRoteiro } = require("./gerarRoteiro");
-const { salvarHQ } = require("./salvarHQ");
-const { gerarImagem } = require("./gerarImagem");
+// agent/gerarImagem.js
+const fs = require("fs");
+const path = require("path");
+const https = require("https");
 
-async function executar() {
-  const noticia = await buscarNoticia();
-  const roteiro = gerarRoteiro(noticia);
-  const hoje = new Date().toISOString().split("T")[0];
-  const nomeImagem = `HQ-${hoje}.png`;
+async function gerarImagem(roteiro, nomeArquivo) {
+  // Aqui você pode usar IA real futuramente. Por enquanto, usamos uma imagem simulada.
+  const urlImagem = "https://copilot.microsoft.com/th/id/BCO.73022c02-25b3-413f-86f8-9649db93675b.png";
+  const destino = path.join(__dirname, "..", "docs", "imagens", nomeArquivo);
 
-  const imagemGerada = await gerarImagem(roteiro, nomeImagem);
-  await salvarHQ(noticia, roteiro, imagemGerada);
-
-  console.log("✅ HQ gerada, imagem criada e site atualizado!");
+  return new Promise((resolve, reject) => {
+    https.get(urlImagem, response => {
+      const file = fs.createWriteStream(destino);
+      response.pipe(file);
+      file.on("finish", () => {
+        file.close(() => resolve(nomeArquivo));
+      });
+    }).on("error", reject);
+  });
 }
 
-executar();
+module.exports = { gerarImagem };
