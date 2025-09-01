@@ -1,17 +1,16 @@
-const { gerarImagemHQ } = require('./gerarImagem');
-const { atualizarJson } = require('./atualizarJson');
+const fs = require('fs');
 
-async function executarAgente() {
-  const noticia = {
-    titulo: "Ataque Hacker no Pix",
-    descricao: "Desvio de R$ 420 milhões levanta alerta sobre segurança digital.",
-    legenda: "Banco Central bloqueia R$ 350 milhões após ataque cibernético.",
-    fonte: "https://g1.globo.com/"
-  };
+const hoje = new Date().toISOString().split('T')[0];
+const hq = {
+  titulo: "Ataque Hacker no Pix",
+  descricao: "Desvio de R$ 420 milhões levanta alerta sobre segurança digital.",
+  imagem: `imagens/HQ-${hoje}.png`,
+  legenda: "Banco Central bloqueia R$ 350 milhões após ataque cibernético.",
+  fonte: "https://g1.globo.com/"
+};
 
-  const imagemGerada = await gerarImagemHQ(noticia);
-  await atualizarJson(noticia, imagemGerada);
-  console.log("✅ HQ atualizada com sucesso!");
-}
+// Atualiza data.json
+fs.writeFileSync('data.json', JSON.stringify(hq, null, 2));
 
-executarAgente();
+// Salva HQ no histórico
+fs.writeFileSync(`hqs/${hoje}.json`, JSON.stringify(hq, null, 2));
