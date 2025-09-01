@@ -1,4 +1,3 @@
-// agent/buscarNoticia.js
 const fetch = require("node-fetch");
 const { parseStringPromise } = require("xml2js");
 
@@ -8,7 +7,7 @@ async function buscarNoticia() {
   const xml = await response.text();
   const parsed = await parseStringPromise(xml);
 
-  const item = parsed.rss.channel[0].item[0]; // notícia mais recente
+  const item = parsed.rss.channel[0].item[0];
   return {
     titulo: item.title[0],
     link: item.link[0],
