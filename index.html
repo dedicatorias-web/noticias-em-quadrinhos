@@ -73,7 +73,6 @@
     <ul id="lista-hqs">
       <li><a href="hqs/2025-08-31.json">Venda de Gustavo Mancha (2025-08-31)</a></li>
       <li><a href="hqs/2025-08-30.json">Crise no transporte público (2025-08-30)</a></li>
-      <!-- Você pode gerar essa lista dinamicamente depois -->
     </ul>
   </div>
 
@@ -86,6 +85,7 @@
         document.getElementById('imagem').src = data.imagem;
         document.getElementById('legenda').textContent = data.legenda;
         document.getElementById('fonte').href = data.fonte;
+        document.getElementById('fonte').textContent = "HQ da notícia";
       })
       .catch(error => {
         console.error("Erro ao carregar data.json:", error);
