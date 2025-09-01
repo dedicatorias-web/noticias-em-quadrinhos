@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Notícia em Quadrinhos</title>
-  <style> 
+  <style>
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f4;
@@ -60,10 +60,10 @@
   </style>
 </head>
 <body>
-  <h1>🗞️ HQ da Última Hora</h1>
+  <h1 id="titulo">🗞️ HQ da Última Hora</h1>
   <div class="hq-container">
     <p id="descricao">Carregando...</p>
-    <img src="imagens/HQ.png" alt="HQ da notícia">
+    <img id="imagem" src="" alt="HQ da notícia">
     <p class="caption" id="legenda">...</p>
   </div>
   <p class="source">Fonte: <a id="fonte" href="#" target="_blank">...</a></p>
@@ -81,11 +81,15 @@
     fetch('data.json')
       .then(response => response.json())
       .then(data => {
-        document.querySelector('h1').textContent = data.titulo;
+        document.getElementById('titulo').textContent = data.titulo;
         document.getElementById('descricao').textContent = data.descricao;
         document.getElementById('imagem').src = data.imagem;
         document.getElementById('legenda').textContent = data.legenda;
         document.getElementById('fonte').href = data.fonte;
+      })
+      .catch(error => {
+        console.error("Erro ao carregar data.json:", error);
+        document.getElementById('descricao').textContent = "Não foi possível carregar a HQ.";
       });
   </script>
 </body>
