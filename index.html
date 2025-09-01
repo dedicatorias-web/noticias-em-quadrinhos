@@ -4,37 +4,50 @@
   <meta charset="UTF-8">
   <title>Notícia em Quadrinhos</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
-    h1 { color: #2c3e50; }
-    .hq { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .quadro { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    .quadro img { width: 100%; border-radius: 5px; }
-    .quadro p { margin-top: 10px; font-size: 14px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .hq-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hq-container img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .caption {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+    }
+    .source {
+      font-size: 12px;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
-  <h1>📢 HQ da Última Hora</h1>
-  <p>Venda milionária de Gustavo Mancha movimenta os bastidores do futebol brasileiro.</p>
-
-  <div class="hq">
-    <div class="quadro">
-      <img src="https://via.placeholder.com/300x200?text=Gustavo+Mancha+em+ação" alt="Gustavo Mancha jogando">
-      <p>Gustavo Mancha brilha no Fortaleza e chama atenção internacional.</p>
-    </div>
-    <div class="quadro">
-      <img src="https://via.placeholder.com/300x200?text=Olympiacos+assinando+contrato" alt="Olympiacos">
-      <p>Olympiacos fecha contrato de R$ 28 milhões com o zagueiro brasileiro.</p>
-    </div>
-    <div class="quadro">
-      <img src="https://via.placeholder.com/300x200?text=Leila+Pereira+feliz" alt="Leila Pereira">
-      <p>Palmeiras recebe R$ 8 milhões pela venda de 30% dos direitos.</p>
-    </div>
-    <div class="quadro">
-      <img src="https://via.placeholder.com/300x200?text=Torcida+comemorando" alt="Torcida">
-      <p>Torcida comemora reforço financeiro e sonha com novos craques.</p>
-    </div>
+  <h1>🗞️ HQ da Última Hora</h1>
+  <div class="hq-container">
+    <p>Venda milionária de Gustavo Mancha movimenta os bastidores do futebol brasileiro.</p>
+    
+    <!-- Substitua o link abaixo pela URL da imagem gerada -->
+    <img src="LINK_DA_IMAGEM_AQUI" alt="HQ da notícia sobre Gustavo Mancha">
+    
+    <p class="caption">Gustavo Mancha é vendido ao Olympiacos e Palmeiras fatura R$ 8 milhões.</p>
   </div>
 
-  <p style="margin-top: 30px; font-size: 12px;">Fonte: <a href="https://www.otvfoco.com.br/leila-garante-reforco-de-r8m-ao-palmeiras/" target="_blank">TV Foco</a></p>
+  <p class="source">Fonte: <a href="https://www.otvfoco.com.br/leila-garante-reforco-de-r8m-ao-palmeiras/" target="_blank">TV Foco</a></p>
 </body>
 </html>
