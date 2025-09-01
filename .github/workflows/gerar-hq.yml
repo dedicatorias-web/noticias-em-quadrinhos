@@ -22,7 +22,9 @@ jobs:
         run: npm install
 
       - name: Executar agente
-        run: node agent/index.js
+        run: |
+          npm install
+          npm run start
 
       - name: Commit e push
         run: |
