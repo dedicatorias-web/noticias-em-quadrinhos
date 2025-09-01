@@ -1,9 +1,0 @@
-{
-  "name": "noticias-em-quadrinhos",
-  "version": "1.0.0",
-  "main": "agent/index.js",
-  "scripts": {
-    "start": "node agent/index.js"
-  },
-  "dependencies": {}
-}
