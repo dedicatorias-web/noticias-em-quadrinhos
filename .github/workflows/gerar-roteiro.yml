@@ -1,0 +1,36 @@
+name: Gerar roteiro de HQ
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # roda de hora em hora (UTC)
+  workflow_dispatch:     # permite rodar manualmente
+
+jobs:
+  gerar-roteiro:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Executar agente
+        run: npm start
+
+      - name: Commit e push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+          git add docs/
+          git commit -m "Roteiro de HQ gerado automaticamente" || echo "Nada para commitar"
+          git push origin main
