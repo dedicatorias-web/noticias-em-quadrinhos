@@ -1,18 +1,22 @@
 const { buscarNoticia } = require("./buscarNoticia");
 const { gerarRoteiro } = require("./gerarRoteiro");
 const { salvarHQ } = require("./salvarHQ");
-const { gerarImagem } = require("./gerarImagem");
 
 async function executar() {
-  const noticia = await buscarNoticia();
-  const roteiro = gerarRoteiro(noticia);
-  const hoje = new Date().toISOString().split("T")[0];
-  const nomeImagem = `HQ-${hoje}.png`;
+  try {
+    const noticia = await buscarNoticia();
+    const roteiro = gerarRoteiro(noticia);
 
-  const imagemGerada = await gerarImagem(roteiro, nomeImagem);
-  await salvarHQ(noticia, roteiro, imagemGerada);
+    const hoje = new Date().toISOString().split("T")[0];
+    const nomeImagem = `HQ-${hoje}.png`; // imagem será gerada depois
 
-  console.log("✅ HQ gerada, imagem criada e site atualizado!");
+    await salvarHQ(noticia, roteiro, nomeImagem);
+
+    console.log("✅ Roteiro gerado e HQ salva com sucesso!");
+  } catch (error) {
+    console.error("❌ Erro ao executar agente:", error);
+    process.exit(1);
+  }
 }
 
 executar();
