@@ -50,4 +50,15 @@
 
   <p class="source">Fonte: <a href="https://www.otvfoco.com.br/leila-garante-reforco-de-r8m-ao-palmeiras/" target="_blank">TV Foco</a></p>
 </body>
+<script>
+  fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector('h1').textContent = data.titulo;
+      document.querySelector('.hq-container p').textContent = data.descricao;
+      document.querySelector('.hq-container img').src = data.imagem;
+      document.querySelector('.caption').textContent = data.legenda;
+      document.querySelector('.source a').href = data.fonte;
+    });
+</script>
 </html>
